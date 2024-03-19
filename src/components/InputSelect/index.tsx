@@ -17,7 +17,7 @@ export function InputSelect<TItem>({
     top: 0,
     left: 0,
   })
-  console.log(selectedValue)
+  
 
   const onChange = useCallback<InputSelectOnChange<TItem>>(
     (selectedItem) => {
