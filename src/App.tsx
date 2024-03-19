@@ -7,6 +7,9 @@ import { usePaginatedTransactions } from "./hooks/usePaginatedTransactions"
 import { useTransactionsByEmployee } from "./hooks/useTransactionsByEmployee"
 import { EMPTY_EMPLOYEE } from "./utils/constants"
 import { Employee } from "./utils/types"
+type ToggledTransactions = {
+  [key: string]: boolean;
+};
 
 export function App() {
   const { data: employees, ...employeeUtils } = useEmployees()
@@ -14,10 +17,8 @@ export function App() {
   const { data: transactionsByEmployee, ...transactionsByEmployeeUtils } = useTransactionsByEmployee()
   const [isFilteredByEmployee, setIsFilteredByEmployee] = useState(false);
   const [isLoading, setIsLoading] = useState(false)
+  const [toggledTransactions, setToggledTransactions] = useState<ToggledTransactions>({});
 
-
-  
-  
   const transactions = useMemo(
     () => paginatedTransactions?.data ?? transactionsByEmployee ?? null,
     [paginatedTransactions, transactionsByEmployee]
